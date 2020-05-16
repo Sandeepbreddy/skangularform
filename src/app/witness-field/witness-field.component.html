@@ -1,0 +1,187 @@
+<div class="container-fluid">
+  <mat-accordion
+    *ngFor="let witness of witnessArray; let i = index"
+    class="m-2"
+  >
+    <mat-expansion-panel>
+      <mat-expansion-panel-header>
+        <mat-panel-title> Witness {{ i + 1 }} </mat-panel-title>
+        <mat-panel-description>
+          Give witness discription
+        </mat-panel-description>
+      </mat-expansion-panel-header>
+      <div class="row">
+        <div class="col-sm-3">
+          <mat-form-field [style.width.px]="200">
+            <mat-label>Type of Witness</mat-label>
+            <input
+              matInput
+              name="typeOfWitness{{ i }}"
+              [(ngModel)]="witness.typeOfWitness"
+            />
+          </mat-form-field>
+        </div>
+        <div class="col-sm-3">
+          <mat-form-field [style.width.px]="200">
+            <mat-label>First name</mat-label>
+            <input
+              matInput
+              name="firstName{{ i }}"
+              [(ngModel)]="witness.name"
+            />
+          </mat-form-field>
+        </div>
+        <div class="col-sm-3">
+          <mat-form-field [style.width.px]="200">
+            <mat-label>Age</mat-label>
+            <input
+              matInput
+              type="number"
+              min="1"
+              name="age{{ i }}"
+              [(ngModel)]="witness.age"
+            />
+          </mat-form-field>
+        </div>
+        <div class="col-sm-3">
+          <mat-form-field [style.width.px]="200">
+            <mat-label>Occupation</mat-label>
+            <input
+              matInput
+              name="occupation{{ i }}"
+              [(ngModel)]="witness.occupation"
+            />
+          </mat-form-field>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-sm-4">
+          <mat-form-field [style.width.px]="50">
+            <mat-label>Relation</mat-label>
+            <mat-select
+              [(ngModel)]="witness.relationPrefix"
+              name="relationPrefix{{ i }}"
+            >
+              <mat-option
+                *ngFor="let relation of relations"
+                [value]="relation.value"
+                >{{ relation.viewValue }}</mat-option
+              >
+            </mat-select>
+          </mat-form-field>
+          <mat-form-field [style.width.px]="250">
+            <mat-label>Name</mat-label>
+            <input
+              matInput
+              [(ngModel)]="witness.relationName"
+              name="relationName{{ i }}"
+            />
+          </mat-form-field>
+        </div>
+        <div class="col-sm-4">
+          <mat-label>Gender</mat-label>
+          <mat-radio-group
+            [(ngModel)]="witness.gender"
+            name="gender{{ i }}"
+            layout="row"
+            [style.width.px]="300"
+          >
+            <mat-radio-button *ngFor="let gender of genders" value="gender">{{
+              gender
+            }}</mat-radio-button>
+          </mat-radio-group>
+        </div>
+        <div class="col-sm-4">
+          <mat-form-field [style.width.px]="200">
+            <mat-label>Caste</mat-label>
+            <input matInput [(ngModel)]="witness.caste" name="caste{{ i }}" />
+          </mat-form-field>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-sm-3">
+          <mat-form-field [style.width.px]="200">
+            <mat-label>Address Line 1</mat-label>
+            <input
+              matInput
+              placeholder="Ex. 100 Main St"
+              [(ngModel)]="witness.addressLine1"
+              name="addressLine1{{ i }}"
+            />
+          </mat-form-field>
+        </div>
+        <div class="col-sm-3">
+          <mat-form-field [style.width.px]="200">
+            <mat-label>Address Line 2</mat-label>
+            <input
+              matInput
+              [(ngModel)]="witness.addressLine2"
+              name="addressLine2{{ i }}"
+            />
+          </mat-form-field>
+        </div>
+        <div class="col-sm-3">
+          <mat-form-field [style.width.px]="200">
+            <mat-label>Village/Street</mat-label>
+            <input
+              matInput
+              [(ngModel)]="witness.villageOrStreet"
+              name="villageOrStreet{{ i }}"
+            />
+          </mat-form-field>
+        </div>
+        <div class="col-sm-3">
+          <mat-form-field [style.width.px]="200">
+            <mat-label>Mandal</mat-label>
+            <input matInput [(ngModel)]="witness.mandal" name="mandal{{ i }}" />
+          </mat-form-field>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-sm-4">
+          <mat-form-field [style.width.px]="250">
+            <mat-label>City</mat-label>
+            <input matInput [(ngModel)]="witness.city" name="city{{ i }}" />
+          </mat-form-field>
+        </div>
+        <div class="col-sm-4">
+          <mat-form-field [style.width.px]="250">
+            <mat-label>State</mat-label>
+            <input matInput [(ngModel)]="witness.state" name="state{{ i }}" />
+          </mat-form-field>
+        </div>
+        <div class="col-sm-4">
+          <mat-form-field [style.width.px]="250">
+            <mat-label>Zipcode</mat-label>
+            <input
+              matInput
+              maxlength="5"
+              placeholder="Ex. 94105"
+              [(ngModel)]="witness.zipCode"
+              name="zipCode{{ i }}"
+            />
+          </mat-form-field>
+        </div>
+      </div>
+      <button mat-raised-button (click)="addWitness()" class="btn btn-primary">
+        Add Witness
+      </button>
+      <button
+        mat-raised-button
+        (click)="deleteWitness(i)"
+        *ngIf="i != 0"
+        class="btn btn-danger leftMarginForButton"
+      >
+        Delete
+      </button>
+    </mat-expansion-panel>
+  </mat-accordion>
+  <br />
+  <button
+    (click)="addWitnessView()"
+    class="material-icons"
+    class="btn btn-info"
+  >
+    Add More ...
+  </button>
+</div>

@@ -1,0 +1,220 @@
+<div class="container-fluid">
+  <div class="col-md-12">
+    <form #dataForm="ngForm">
+      <div class="row">
+        <div class="col-sm-3">
+          <mat-form-field [style.width.px]="300">
+            <mat-label>Name of Police Station</mat-label>
+            <input
+              matInput
+              name="NameOfPoliceStation"
+              [(ngModel)]="formValues.NameOfPoliceStation"
+            />
+          </mat-form-field>
+        </div>
+        <div class="col-sm-3">
+          <mat-form-field [style.width.px]="300">
+            <mat-label>Name of Court</mat-label>
+            <input
+              matInput
+              name="NameOfCourt"
+              [(ngModel)]="formValues.NameOfCourt"
+            />
+          </mat-form-field>
+        </div>
+        <div class="col-sm-3">
+          <mat-form-field [style.width.px]="300">
+            <mat-label>Case Register Number</mat-label>
+            <input
+              matInput
+              name="CaseRegisterNumber"
+              [(ngModel)]="formValues.CaseRegisterNumber"
+            />
+          </mat-form-field>
+        </div>
+        <div class="col-sm-3">
+          <mat-form-field [style.width.px]="300">
+            <mat-label>City</mat-label>
+            <input matInput name="City" [(ngModel)]="formValues.City" />
+          </mat-form-field>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-sm-6">
+          <mat-form-field [style.width.px]="500">
+            <mat-chip-list
+              #chipList
+              aria-label="ACT's"
+              name="Act"
+              [(ngModel)]="formValues.Act"
+            >
+              <mat-chip
+                *ngFor="let item of formValues.Act"
+                [selectable]="selectable"
+                [removable]="removable"
+                (removed)="remove(item)"
+              >
+                {{ item }}
+                <mat-icon matChipRemove *ngIf="removable">cancel</mat-icon>
+              </mat-chip>
+              <input
+                placeholder="Add ACTs..."
+                [matChipInputFor]="chipList"
+                [matChipInputSeparatorKeyCodes]="separatorKeysCodes"
+                [matChipInputAddOnBlur]="addOnBlur"
+                (matChipInputTokenEnd)="add($event)"
+              />
+            </mat-chip-list>
+          </mat-form-field>
+        </div>
+        <div class="col-sm-6">
+          <mat-form-field [style.width.px]="500">
+            <mat-chip-list
+              #SectionList
+              aria-label="Sections"
+              name="Sections"
+              [(ngModel)]="formValues.Sections"
+            >
+              <mat-chip
+                *ngFor="let item of formValues.Sections"
+                [selectable]="selectable"
+                [removable]="removable"
+                (removed)="removeSection(item)"
+              >
+                {{ item }}
+                <mat-icon matChipRemove *ngIf="removable">cancel</mat-icon>
+              </mat-chip>
+              <input
+                placeholder="Add Sections..."
+                [matChipInputFor]="SectionList"
+                [matChipInputSeparatorKeyCodes]="separatorKeysCodes"
+                [matChipInputAddOnBlur]="addOnBlur"
+                (matChipInputTokenEnd)="addSection($event)"
+              />
+            </mat-chip-list>
+          </mat-form-field>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-sm-12">
+          <mat-form-field [style.width.px]="500">
+            <mat-label>Description</mat-label>
+            <textarea
+              matInput
+              placeholder="Enter details"
+              name="Description"
+              rows="5"
+              [(ngModel)]="formValues.Description"
+            ></textarea>
+          </mat-form-field>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-sm-4">
+          <mat-form-field [style.width.px]="300">
+            <mat-label>Registered By</mat-label>
+            <input
+              matInput
+              name="RegisteredBy"
+              [(ngModel)]="formValues.RegisteredBy"
+            />
+          </mat-form-field>
+        </div>
+        <div class="col-sm-4">
+          <mat-form-field [style.width.px]="300">
+            <mat-label>Charge Sheeted By</mat-label>
+            <input
+              matInput
+              name="ChargeSheetedBy"
+              [(ngModel)]="formValues.ChargeSheetedBy"
+            />
+          </mat-form-field>
+        </div>
+        <div class="col-sm-4">
+          <mat-form-field [style.width.px]="300">
+            <mat-label>Doctor</mat-label>
+            <input matInput name="Doctor" [(ngModel)]="formValues.Doctor" />
+          </mat-form-field>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-sm-4">
+          <mat-form-field [style.width.px]="300">
+            <mat-label>Date of Occurance</mat-label>
+            <input
+              type="date"
+              matInput
+              name="DateOfOccurance"
+              [(ngModel)]="formValues.DateOfOccurance"
+            />
+          </mat-form-field>
+        </div>
+        <div class="col-sm-4">
+          <mat-form-field [style.width.px]="300">
+            <mat-label>Time of Occurance</mat-label>
+            <input
+              type="time"
+              matInput
+              name="TimeOfOccurance"
+              [(ngModel)]="formValues.TimeOfOccurance"
+            />
+          </mat-form-field>
+        </div>
+        <div class="col-sm-4">
+          <mat-form-field [style.width.px]="300">
+            <mat-label>Place of Occurance</mat-label>
+            <input
+              matInput
+              name="PlaceOfOccurance"
+              [(ngModel)]="formValues.PlaceOfOccurance"
+            />
+          </mat-form-field>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-sm-4">
+          <mat-form-field [style.width.px]="300">
+            <mat-label>Date of Report</mat-label>
+            <input
+              type="date"
+              matInput
+              name="DateOfReport"
+              [(ngModel)]="formValues.DateOfReport"
+            />
+          </mat-form-field>
+        </div>
+        <div class="col-sm-4" [style.width.px]="300">
+          <mat-form-field>
+            <mat-label>Time of Report</mat-label>
+            <input
+              type="time"
+              matInput
+              name="TimeOfReport"
+              [(ngModel)]="formValues.TimeOfReport"
+            />
+          </mat-form-field>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-sm-12">
+          <mat-form-field [style.width.px]="500">
+            <mat-label>Scene of Offence Description</mat-label>
+            <textarea
+              matInput
+              placeholder="Enter details"
+              name="SceneOfOffenceDescription"
+              rows="5"
+              [(ngModel)]="formValues.SceneOfOffenceDescription"
+            ></textarea>
+          </mat-form-field>
+        </div>
+      </div>
+      <app-witnessfield></app-witnessfield>
+      <app-accused-list></app-accused-list>
+    </form>
+
+    <button mat-raised-button (click)="generateJson()">Generate</button>
+    <hr />
+    {{ this.formValues | json }}
+  </div>
+</div>
